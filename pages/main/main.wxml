@@ -1,0 +1,17 @@
+<view class="page">
+    <view class="page__bd">
+        <mp-loading type="circle" show="{{show}}" animated="{{animated}}"></mp-loading>
+        <mp-loading type="dot-white" ext-class="demo1"></mp-loading>
+    </view>
+</view>
+<mp-toptips msg="{{error}}" type="{{type}}" show="{{error}}"></mp-toptips>
+<view class="title">{{number}}.{{main.question}}</view>
+<mp-cells title="选择">
+    <mp-checkbox-group prop="checkbox" multi="{{true}}">
+        <mp-checkbox wx:for="{{arrr}}" bindchange="checkboxChange" wx:key="id" label="{{item.names}}" catchtap='radiocon' data-index="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+    </mp-checkbox-group>
+</mp-cells>
+<button type="primary" bindtap="purchase">检查</button>
+<view class="time">
+  <view class="time-curin">{{countDownNum}}</view>
+</view>

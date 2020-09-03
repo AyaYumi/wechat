@@ -1,0 +1,9 @@
+.title{
+  font-size: 80rpx;
+  font-weight: bold;
+  text-align: center;
+}
+.main{
+  text-align: center;
+  margin: 50rpx 0rpx;
+}

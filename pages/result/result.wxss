@@ -1,0 +1,6 @@
+/* pages/result/result.wxss */
+.title{
+    text-align: center;
+    font-weight: bold;
+    font-size: 80rpx;
+}

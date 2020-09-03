@@ -1,0 +1,12 @@
+/* pages/failure/failure.wxss */
+.cai{
+    text-align: center;
+    font-size: 750rpx;
+    font-weight: bold;
+    font-family: "宋体";
+    text-shadow: .2rem 0rem .5rem rgba(255, 0, 0, 0.363),
+                -.2rem 0rem .5rem rgba(255, 0, 0, 0.308),
+                0rem .2rem .5rem rgba(255, 0, 0, 0.336),
+                0rem -.2rem .5rem rgba(255, 0, 0, 0.363);
+    color: rgb(243, 54, 47);
+}
