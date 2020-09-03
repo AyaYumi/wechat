@@ -11,7 +11,7 @@
         <mp-checkbox wx:for="{{arrr}}" bindchange="checkboxChange" wx:key="id" label="{{item.names}}" catchtap='radiocon' data-index="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
     </mp-checkbox-group>
 </mp-cells>
-<button type="primary" bindtap="purchase">检查</button>
+<button type="primary" bindtap="purchase" class="button">检查</button>
 <view class="time">
   <view class="time-curin">{{countDownNum}}</view>
 </view>

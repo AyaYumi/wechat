@@ -1,4 +1,22 @@
 /* pages/main/main.wxss */
 .title{
+    margin-top: 100rpx;
     text-indent:35rpx;
+    font-size: 40rpx;
+}
+.time-curin{
+    text-align: center;
+    line-height: 100rpx;
+    color: white;
+    font-size: 50rpx;
+}
+.time{
+    background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+    width: 100rpx;
+    height: 100rpx;
+    margin: 0 auto;
+    border-radius: 50rpx;
+}
+.button{
+    margin: 50rpx 0rpx;
 }
