@@ -1,7 +1,15 @@
+<view style="width:{{countDownNum}}0%;height:8rpx;background-image: linear-gradient(-225deg, #9EFBD3 0%, #57E9F2 48%, #45D4FB 100%);transition: width 0.5s;"></view>
+
 <view class="page">
     <view class="page__bd">
         <mp-loading type="circle" show="{{show}}" animated="{{animated}}"></mp-loading>
         <mp-loading type="dot-white" ext-class="demo1"></mp-loading>
+    </view>
+
+</view>
+<view class="time">
+    <view class="time-curin">
+        <span>{{countDownNum}}</span>
     </view>
 </view>
 <mp-toptips msg="{{error}}" type="{{type}}" show="{{error}}"></mp-toptips>
@@ -12,7 +20,5 @@
             catchtap='radiocon' data-index="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
     </mp-checkbox-group>
 </mp-cells>
-<button type="primary" bindtap="purchase" class="button">检查</button>
-<view class="time">
-    <view class="time-curin">{{countDownNum}}</view>
-</view>
+<button style="background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);" type="primary" bindtap="purchase" class="button">检查</button>
+

@@ -48,7 +48,7 @@ Page({
                     that.setData({
                         arrr: arr,
                         show: !that.data.show
-                    })
+                    })-
                     that.countDown();
                     // console.log(that.data.main)
                     // console.log(that.data.arrr)
@@ -161,7 +161,7 @@ Page({
             url: '../failure/failure',
         })
     },
-    
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -188,7 +188,6 @@ Page({
      */
     onUnload: function () {
         clearInterval(this.data.timer);
-
     },
 
     /**
