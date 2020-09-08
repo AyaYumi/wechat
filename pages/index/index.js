@@ -5,24 +5,9 @@ Page({
      */
 
     data: {
-        array:[
-            {id:"1",name: "haha",numb:"10"},
-            {id:"2",name: "haa",numb:"9"},
-            {id:"3",name: "aha",numb:"8"},
-            {id:"4",name: "hha",numb:"7"},
-            {id:"5",name: "hah",numb:"6"},
-            {id:"6",name: "ha",numb:"5"},
-            {id:"7",name: "ha",numb:"5"},
-            {id:"8",name: "ha",numb:"5"},
-            {id:"9",name: "ha",numb:"5"},
-            {id:"10",name: "ha",numb:"5"},
-            {id:"11",name: "ha",numb:"5"},
-            {id:"12",name: "ha",numb:"5"},
-            {id:"13",name: "ha",numb:"5"},
-            {id:"14",name: "ha",numb:"5"},
-        ]
+        
     },
-    purchase:function(){
+    purchase: function () {
         wx.navigateTo({
             url: '../main/main',
         })
@@ -32,13 +17,17 @@ Page({
      */
     onLoad: function (options) {
         wx.request({
-          url: 'https://test.linyiit.cn/anorder/wx55cd68f677876ec7/10',
-          method: "GET",
-          success: (result) => {
-              console.log(result);
-          },
+            url: 'https://test.linyiit.cn/anorder/wx55cd68f677876ec7/10',
+            method: "GET",
+            success: (result) => {
+                //   console.log(result);
+                this.setData({
+                    main: result.data
+                })
+            },
         })
     },
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -50,7 +39,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        
+
     },
 
     /**

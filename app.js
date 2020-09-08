@@ -14,7 +14,7 @@ App({
                     },
                     method: 'POST',
                     success: (result) => {
-                        console.log(result);
+                        // console.log(result);
                         wx.setStorageSync('openid', result.data.openid);
                     }
                 })
