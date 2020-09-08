@@ -10,8 +10,11 @@
     color: white;
     font-size: 50rpx;
 }
+.error{
+    text-align: center;
+}
 .time{
-    background-image: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     width: 95%;
     height: 80rpx;
     margin: 0 auto;

@@ -3,7 +3,32 @@
   font-weight: bold;
   text-align: center;
 }
+.button{
+  margin-bottom: 100rpx;
+}
 .main{
   text-align: center;
-  margin: 50rpx 0rpx;
+  margin: 20rpx 0rpx;
+}
+.th{
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background: rgb(124, 124, 124);
+}
+.tr{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+.tr:nth-child(even){
+  background: #ccc;
+}
+.td{
+  text-align: center;
+  overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+  width: 33%;
 }

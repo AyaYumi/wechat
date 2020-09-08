@@ -5,16 +5,53 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        openid: "",
+        numb: "",
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        let that = this;
+        console.log(options);
+        wx.getStorage({
+            key: 'openid',
+            success(res) {
+                console.log(res);
+
+                that.setData({
+                    openid: res.data,
+                    numb: options.numb
+                })
+                that.add();
+            }
+        })
+        // this.setData({
+        //     numb = options.numb
+        // })
 
     },
-
+    add: function () {
+        let open = this.data.openid
+        let num = this.data.numb
+        console.log(open);
+        wx.request({
+            url: 'https://test.linyiit.cn/score',
+            data: {
+                openid: open,
+                appid: "wx55cd68f677876ec7",
+                num: num
+            },
+            method: "POST",
+            success: (result) => {
+                console.log(result);
+                this.setData({
+                    msg: result.data.msg
+                })
+            },
+        })
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

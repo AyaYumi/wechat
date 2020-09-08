@@ -1,4 +1,6 @@
-<view style="width:{{countDownNum}}0%;height:8rpx;background-image: linear-gradient(-225deg, #9EFBD3 0%, #57E9F2 48%, #45D4FB 100%);transition: width 0.5s;"></view>
+<view
+    style="width:{{countDownNum}}0%;height:8rpx;background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);transition: width 0.5s;">
+</view>
 
 <view class="page">
     <view class="page__bd">
@@ -13,12 +15,22 @@
     </view>
 </view>
 <mp-toptips msg="{{error}}" type="{{type}}" show="{{error}}"></mp-toptips>
-<view class="title">{{number}}.{{main.question}}</view>
-<mp-cells title="选择(多选)">
-    <mp-checkbox-group prop="checkbox" multi="{{true}}">
-        <mp-checkbox wx:for="{{arrr}}" bindchange="checkboxChange" wx:key="id" label="{{item.names}}"
-            catchtap='radiocon' data-index="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
-    </mp-checkbox-group>
+<view class="title">{{num}}.{{main.question}}</view>
+<mp-cells title="{{title}}">
+    <block wx:if="{{mode==true}}">
+        <mp-checkbox-group prop="checkbox" multi="{{true}}">
+            <mp-checkbox wx:for="{{arrr}}" bindchange="checkboxChange" wx:key="id" label="{{item.names}}"
+                catchtap='radiocon' data-index="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+        </mp-checkbox-group>
+    </block>
+    <block wx:else>
+        <mp-checkbox-group prop="checkbox" multi="{{false}}">
+            <mp-checkbox wx:for="{{arrr}}" bindchange="checkboxChange" wx:key="id" label="{{item.names}}"
+                catchtap='radiocon' data-index="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+        </mp-checkbox-group>
+    </block>
 </mp-cells>
-<button style="background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);" type="primary" bindtap="purchase" class="button">检查</button>
+<button disabled="{{disables}}" style="background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);"
+    type="primary" bindtap="purchase" class="button">检查</button>
 
+<view class="error">答错题数: {{errors}}/3</view>
