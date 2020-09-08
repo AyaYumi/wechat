@@ -4,3 +4,6 @@
     font-weight: bold;
     font-size: 80rpx;
 }
+.h1{
+    text-align: center;
+}

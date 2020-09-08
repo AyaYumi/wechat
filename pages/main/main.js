@@ -8,57 +8,104 @@ Page({
         timer: '', //定时器名字
         countDownNum: '10', //倒计时初始值
         tips: '请稍后',
+        key: {},
+        mode: '',
+        title: '',
         show: true,
         animated: true,
         main: {},
+        mains: {},
         answers: [],
         error: '',
         correct: 0,
         errors: 0,
         type: 'error',
         number: 0,
+        num: 1,
+        only: '',
+        disables: true,
+        consequence: []
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
         var that = this;
-        if (that.data.errors < 3) {
-            wx.request({
-                url: 'https://sakurayuik.top/',
-                method: "GET",
-                success: (res) => {
-                    var data = res.data[that.data.number]
-                    that.setData({
-                        main: data,
-                        option: data.options,
-                        answers: [],
-                        number: that.data.number + 1,
-                    })
-                    // console.log(that.data.main)
-                    var solution = that.data.option
-                    var arr = []
-                    for (let i in solution) {
-                        var createArr = {}
-                        createArr.names = solution[i];
-                        createArr.value = i;
-                        createArr.checked = false;
-                        arr.push(createArr);
-                    }
-                    that.setData({
-                        arrr: arr,
-                        show: !that.data.show
-                    })-
-                    that.countDown();
-                    // console.log(that.data.main)
-                    // console.log(that.data.arrr)
-                },
-            })
-        } else {
-            that.failure();
-        }
-    },
+        that.data.consequence.length = 0;
+        wx.request({
+            url: 'https://test.linyiit.cn/subjectlist/10',
+            method: "GET",
+            success: (res) => {
+                // console.log(res)
+                that.setData({
+                    mains: res.data,
+                    number: 0
+                })
+                res.data.forEach(element => {
+                    var json = JSON.parse(element.options);
+                    that.data.consequence.push(json);
+                });
+                that.resolve();
+                console.log(that.data.mode);
 
+            },
+        })
+    },
+    resolve: function () {
+        var that = this;
+        let main = that.data.mains;
+        let consequence = that.data.consequence;
+        console.log(that.data.mains);
+        var data = main[that.data.number];
+        var optionss = consequence[that.data.number];
+        let numbs = that.data.number;
+        // console.log(numbs);
+        this.setData({
+            disables: false
+        })
+        if (that.data.errors < 3) {
+            if (numbs > 9) {
+                that.onLoad();
+            } else {
+                that.setData({
+                    main: data,
+                    option: optionss,
+                    verdict: data.answer.length,
+                    answers: [],
+                    number: that.data.number + 1,
+                })
+                if (data.answer.length == 1) {
+                    that.setData({
+                        mode: false,
+                        title: '选择(单选)',
+                    })
+                } else {
+                    that.setData({
+                        mode: true,
+                        title: '选择(多选)',
+                    })
+                }
+                // console.log(that.data.option);
+                var solution = that.data.option
+                var arr = []
+                for (let i in solution) {
+                    var createArr = {}
+                    createArr.names = solution[i];
+                    createArr.value = i;
+                    createArr.checked = false;
+                    arr.push(createArr);
+                }
+                that.setData({
+                    arrr: arr,
+                    show: !that.data.show
+                })
+                that.countDown();
+            }
+        } else {
+            that.skip();
+        }
+
+    },
     countDown: function () {
         let that = this;
         var numb = that.data.number;
@@ -78,82 +125,149 @@ Page({
                     //因为timer是存在data里面的，所以在关掉时，也要在data里取出后再关闭
                     clearInterval(that.data.timer);
                     that.setData({
+                        disables: true
+                    })
+                    that.setData({
                         error: '超时',
                         errors: that.data.errors + 1,
                         type: 'info'
                     })
-                    if (numb > 9) {
-                        that.skip();
-                    } else {
-                        that.onLoad();
-                    }
+                    that.data.countDownNum = 10;
+                    setTimeout(function () {
+                        that.setData({
+                            num: that.data.num + 1,
+                        })
+                        that.resolve();
+                        console.log(that.data.mode);
+
+                    }, 1000)
                     //关闭定时器之后，可作其他处理codes go here
                 }
-                that.data.countDownNum = 10;
             }, 1000)
         });
     },
     checkboxChange: function (e) {
-        if (e.detail.checked == true) {
-            this.data.answers.push(e.currentTarget.dataset.index);
-            // console.log(e);
-            // console.log(this.data.answers);
+        if (this.data.mode == false) {
+            console.log(e);
+            this.data.only = e.currentTarget.dataset.index
         } else {
-            // console.log(this.data.answers);
-            for (var i = 0; i < this.data.answers.length; i++) {
-                if (this.data.answers[i] == e.currentTarget.dataset.index) {
-                    this.data.answers.splice(i, 1);
-                    break;
-                }
-            };
-            // console.log(this.data.answers);
+            if (e.detail.checked == true) {
+                this.data.answers.push(e.currentTarget.dataset.index);
+                // console.log(e);
+                // console.log(this.data.answers);
+            } else {
+                // console.log(this.data.answers);
+                for (var i = 0; i < this.data.answers.length; i++) {
+                    if (this.data.answers[i] == e.currentTarget.dataset.index) {
+                        this.data.answers.splice(i, 1);
+                        break;
+                    }
+                };
+                // console.log(this.data.answers);
+            }
         }
     },
     purchase: function () {
         var string = this.data.main.answer.split('');
         var str = string.sort();
         var numb = this.data.number;
+        var only = this.data.only;
         var answer = this.data.answers.sort();
-        if (str.toString() == answer.toString()) {
-            this.setData({
-                error: '正确',
-                correct: this.data.correct + 1,
-                type: 'success'
-            })
-            let that = this;
-            setTimeout(function () {
-                if (numb > 9) {
-                    that.skip();
+        console.log(only);
+        
+        this.setData({
+            disables: true
+        })
+        if(this.data.mode == false){
+            if(str.toString() == only){
+                this.setData({
+                    error: '正确',
+                    correct: this.data.correct + 1,
+                    type: 'success'
+                })
+                let that = this;
+                setTimeout(function () {
                     clearInterval(that.data.timer);
-                } else {
-                    that.onLoad();
+                    that.data.countDownNum = 10;
+                    setTimeout(function () {
+                        that.setData({
+                            num: that.data.num + 1,
+                        })
+                        that.resolve();
+                        console.log(that.data.mode);
+    
+                    }, 1000)
+                }, 1000)
+            } else {
+                this.setData({
+                    error: '错误',
+                    errors: this.data.errors + 1,
+                    type: 'error'
+                })
+                let that = this;
+                setTimeout(function () {
                     clearInterval(that.data.timer);
-                }
-            }, 1000)
-        } else {
-            this.setData({
-                error: '错误',
-                errors: this.data.errors + 1,
-                type: 'error'
-            })
-            let that = this;
-            setTimeout(function () {
-                if (numb > 9) {
-                    that.skip();
+                    that.data.countDownNum = 10;
+                    setTimeout(function () {
+                        that.setData({
+                            num: that.data.num + 1,
+                        })
+                        that.resolve();
+                        console.log(that.data.mode);
+    
+                    }, 1000)
+                }, 1000)
+            }
+        }else{
+            if (str.toString() == answer.toString()) {
+                this.setData({
+                    error: '正确',
+                    correct: this.data.correct + 1,
+                    type: 'success'
+                })
+                let that = this;
+                setTimeout(function () {
                     clearInterval(that.data.timer);
-                } else {
-                    that.onLoad();
+                    that.data.countDownNum = 10;
+                    setTimeout(function () {
+                        that.setData({
+                            num: that.data.num + 1,
+                        })
+                        that.resolve();
+                        console.log(that.data.mode);
+    
+                    }, 1000)
+                }, 1000)
+            } else {
+                this.setData({
+                    error: '错误',
+                    errors: this.data.errors + 1,
+                    type: 'error'
+                })
+                let that = this;
+                setTimeout(function () {
                     clearInterval(that.data.timer);
-                }
-            }, 1000)
+                    that.data.countDownNum = 10;
+                    setTimeout(function () {
+                        that.setData({
+                            num: that.data.num + 1,
+                        })
+                        that.resolve();
+                        console.log(that.data.mode);
+    
+                    }, 1000)
+                }, 1000)
+            }
+    
         }
         // console.log(numb);
         // console.log(string.toString());
         // console.log(answer.toString());
     },
     skip: function () {
+        let numbers = this.data.correct
         wx.reLaunch({
-            url: '../result/result',
+            url: '../result/result?numb=' + numbers,
         })
     },
     failure: function () {

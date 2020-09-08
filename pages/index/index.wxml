@@ -1,3 +1,16 @@
 <view class="title">答题</view>
-<view class="main">本次答题为10道题</view>
-<button type="primary" bindtap="purchase" style="background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);">开始</button>
+<view class="main">本次答题题目无上限</view>
+<view class="main">答对加一分</view>
+<view class="main">错三题自动去世</view>
+<view class="main">答完题后分数自动记录在排行榜内</view>
+<button class="button" type="primary" bindtap="purchase" style="background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);">开始</button>
+<view class="th">
+    <view class="td">排名</view>
+    <view class="td">姓名</view>
+    <view class="td">得分</view>
+</view>
+<view wx:for="{{array}}" wx:key="id" class="tr">
+    <view class="td">{{item.id}}</view>
+    <view class="td">{{item.name}}</view>
+    <view class="td">{{item.numb}}</view>
+</view>

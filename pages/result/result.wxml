@@ -1,2 +1,4 @@
 <!--pages/result/result.wxml-->
-<view class="title">全部答完</view>
+<view class="title">答题结束</view>
+<view class="h1">本次获得{{numb}}分</view>
+<view class="h1">{{msg}}</view>
