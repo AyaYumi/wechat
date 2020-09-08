@@ -46,7 +46,7 @@ Page({
                     that.data.consequence.push(json);
                 });
                 that.resolve();
-                console.log(that.data.mode);
+                // console.log(that.data.mode);
 
             },
         })
@@ -55,7 +55,7 @@ Page({
         var that = this;
         let main = that.data.mains;
         let consequence = that.data.consequence;
-        console.log(that.data.mains);
+        // console.log(that.data.mains);
         var data = main[that.data.number];
         var optionss = consequence[that.data.number];
         let numbs = that.data.number;
@@ -69,6 +69,7 @@ Page({
             } else {
                 that.setData({
                     main: data,
+                    countDownNum: 10,
                     option: optionss,
                     verdict: data.answer.length,
                     answers: [],
@@ -138,7 +139,7 @@ Page({
                             num: that.data.num + 1,
                         })
                         that.resolve();
-                        console.log(that.data.mode);
+                        // console.log(that.data.mode);
 
                     }, 1000)
                     //关闭定时器之后，可作其他处理codes go here
@@ -148,7 +149,7 @@ Page({
     },
     checkboxChange: function (e) {
         if (this.data.mode == false) {
-            console.log(e);
+            // console.log(e);
             this.data.only = e.currentTarget.dataset.index
         } else {
             if (e.detail.checked == true) {
@@ -173,7 +174,7 @@ Page({
         var numb = this.data.number;
         var only = this.data.only;
         var answer = this.data.answers.sort();
-        console.log(only);
+        // console.log(only);
         
         this.setData({
             disables: true
@@ -194,7 +195,7 @@ Page({
                             num: that.data.num + 1,
                         })
                         that.resolve();
-                        console.log(that.data.mode);
+                        // console.log(that.data.mode);
     
                     }, 1000)
                 }, 1000)
@@ -213,7 +214,7 @@ Page({
                             num: that.data.num + 1,
                         })
                         that.resolve();
-                        console.log(that.data.mode);
+                        // console.log(that.data.mode);
     
                     }, 1000)
                 }, 1000)
@@ -234,7 +235,7 @@ Page({
                             num: that.data.num + 1,
                         })
                         that.resolve();
-                        console.log(that.data.mode);
+                        // console.log(that.data.mode);
     
                     }, 1000)
                 }, 1000)
@@ -253,7 +254,7 @@ Page({
                             num: that.data.num + 1,
                         })
                         that.resolve();
-                        console.log(that.data.mode);
+                        // console.log(that.data.mode);
     
                     }, 1000)
                 }, 1000)

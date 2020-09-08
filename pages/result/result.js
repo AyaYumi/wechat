@@ -7,6 +7,7 @@ Page({
     data: {
         openid: "",
         numb: "",
+        display:'none'
     },
 
     /**
@@ -19,18 +20,40 @@ Page({
             key: 'openid',
             success(res) {
                 console.log(res);
-
                 that.setData({
                     openid: res.data,
                     numb: options.numb
                 })
-                that.add();
             }
         })
-        // this.setData({
-        //     numb = options.numb
-        // })
-
+        wx.getSetting({
+            success (res){
+                console.log(res);
+                
+              if (res.authSetting['scope.userInfo']) {
+                that.setData({
+                    display:'none'
+                  })
+                // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+                wx.getUserInfo({
+                  success: function(res) {
+                    console.log(res.userInfo)
+                    that.setData({
+                        nickName: res.userInfo.nickName
+                    })
+                    that.add();
+                  }
+                })
+              }else{
+                that.setData({
+                    display:'block'
+                })
+              }
+            }
+          })
+    },
+    bindGetUserInfo:function(){
+        this.onLoad();
     },
     add: function () {
         let open = this.data.openid

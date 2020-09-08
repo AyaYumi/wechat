@@ -1,5 +1,4 @@
-<view
-    style="width:{{countDownNum}}0%;height:8rpx;background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);transition: width 0.5s;">
+<view style="width:{{countDownNum}}0%;height:8rpx;background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);transition: width 0.5s;">
 </view>
 
 <view class="page">
