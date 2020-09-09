@@ -7,7 +7,9 @@ Page({
     data: {
         openid: "",
         numb: "",
-        display:'none'
+        display:'none',
+        disables: true,
+
     },
 
     /**
@@ -15,11 +17,11 @@ Page({
      */
     onLoad: function (options) {
         let that = this;
-        console.log(options);
+        // console.log(options);
         wx.getStorage({
             key: 'openid',
             success(res) {
-                console.log(res);
+                // console.log(res);
                 that.setData({
                     openid: res.data,
                     numb: options.numb
@@ -28,7 +30,7 @@ Page({
         })
         wx.getSetting({
             success (res){
-                console.log(res);
+                // console.log(res);
                 
               if (res.authSetting['scope.userInfo']) {
                 that.setData({
@@ -37,7 +39,7 @@ Page({
                 // 已经授权，可以直接调用 getUserInfo 获取头像昵称
                 wx.getUserInfo({
                   success: function(res) {
-                    console.log(res.userInfo)
+                    // console.log(res.userInfo)
                     that.setData({
                         nickName: res.userInfo.nickName
                     })
@@ -58,7 +60,7 @@ Page({
     add: function () {
         let open = this.data.openid
         let num = this.data.numb
-        console.log(open);
+        // console.log(open);
         wx.request({
             url: 'https://test.linyiit.cn/score',
             data: {
@@ -68,9 +70,10 @@ Page({
             },
             method: "POST",
             success: (result) => {
-                console.log(result);
+                // console.log(result);
                 this.setData({
-                    msg: result.data.msg
+                    disables: false,
+                    msg: result.data.msg,
                 })
             },
         })

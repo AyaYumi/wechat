@@ -2,7 +2,8 @@
 <view class="title">答题结束</view>
 <view class="header">
 <view class="h1">本次获得{{numb}}分</view>
-<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" style="display:{{display}};background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);color:white">授权登录</button>
+<button class="log" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" style="display:{{display}};background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);color:white">授权登录</button>
 <view class="h1">{{msg}}</view>
-<button class="button" type="primary" bindtap="purchase" style="background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);">重新开始</button>
+<button disabled="{{disables}}" class="button" type="primary" bindtap="purchase" style="background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);">重新开始</button>
+<view class="h1">(重新分享才有额外一次答错机会哦)</view>
 </view>
