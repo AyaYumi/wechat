@@ -1,18 +1,30 @@
 <view class="title">答题</view>
+<view class="header">
+<view class="main">答题规则:</view>
 <view class="main">本次答题题目无上限</view>
 <view class="main">答对加一分</view>
 <view class="main">错三题自动去世</view>
 <view class="main">答完题且登录后分数则记录在排行榜内</view>
-<button class="button" type="primary" bindtap="purchase" style="background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);">开始</button>
-<view class="main"><span>排行榜只显示前十名</span></view>
-<view class="main"><span>（奋斗吧，孩纸‎|•'-'•)و✧）</span></view>
-<view class="th">
-    <view class="td">排名</view>
-    <view class="td">姓名</view>
-    <view class="td">得分</view>
 </view>
-<view wx:for="{{main}}" wx:key="id" class="tr">
-    <view class="td">{{index+1}}</view>
-    <view class="td"><open-data type="userNickName"></open-data></view>
-    <view class="td">{{item.subcount}}</view>
+<view class="user">
+    <view class="photo">
+        <open-data type="userAvatarUrl" style="border-radius: 50%;"></open-data>
+    </view>
+    <view class="name">
+        <open-data type="userNickName"></open-data>
+    </view>
+</view>
+<button class="button" type="primary" bindtap="purchase"
+    style="background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);">开始</button>
+<view class="mainn"><span>排行榜只显示前十名</span></view>
+<view class="mainn"><span>（奋斗吧，孩纸‎|•'-'•)و✧）</span></view>
+<view class="ranking">排行榜</view>
+<view class="Rank">
+    <view wx:for="{{main}}" wx:key="id" class="tr">
+        <view class="td" style="width:30%;text-align: center;">{{index+1}}</view>
+        <view class="td" style="width:40%">
+            <open-data type="userNickName"></open-data>
+        </view>
+        <view class="td" style="width:30%;text-align: center;">{{item.subcount}}分</view>
+    </view>
 </view>
