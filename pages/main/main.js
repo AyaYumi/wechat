@@ -10,6 +10,7 @@ Page({
         tips: '请稍后',
         key: {},
         mode: '',
+        share: 3,
         title: '',
         show: true,
         animated: true,
@@ -30,6 +31,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+
         var that = this;
         that.data.consequence.length = 0;
         wx.request({
@@ -47,9 +49,9 @@ Page({
                 });
                 that.resolve();
                 // console.log(that.data.mode);
-
             },
         })
+
     },
     resolve: function () {
         var that = this;
@@ -63,7 +65,7 @@ Page({
         this.setData({
             disables: false
         })
-        if (that.data.errors < 3) {
+        if (that.data.errors < that.data.share) {
             if (numbs > 9) {
                 that.onLoad();
             } else {
@@ -281,7 +283,16 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
+        let that = this
+        wx.getStorage({
+            key: 'share',
+            success(res) {
+                // console.log(res);
+                that.setData({
+                    share: res.data,
+                })
+            }
+        })
     },
 
     /**

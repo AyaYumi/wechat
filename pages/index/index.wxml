@@ -14,8 +14,9 @@
         <open-data type="userNickName"></open-data>
     </view>
 </view>
-<button class="button" type="primary" bindtap="purchase"
-    style="background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);">开始</button>
+<button class="button" type="primary" bindtap="purchase" style="background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);">开始</button>
+<view class="hint">（分享之后可以多错一回）</view>
+<button open-type="share" style="background-image: linear-gradient(to right, #cfd9df 0%, #e2ebf0 100%);color:#4744E4">分享</button>
 <view class="mainn"><span>排行榜只显示前十名</span></view>
 <view class="mainn"><span>（奋斗吧，孩纸‎|•'-'•)و✧）</span></view>
 <view class="ranking">排行榜</view>

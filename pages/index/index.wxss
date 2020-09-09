@@ -10,7 +10,12 @@ page {
   box-shadow: 20rpx 20rpx 60rpx #c9cccf,
     -20rpx -20rpx 60rpx #ffffff;
 }
-
+.hint{
+  text-align: center;
+  font-size: 25rpx;
+  color: #969696;
+  margin: 10rpx 0rpx;
+}
 .title {
   font-size: 50rpx;
   text-align: center;

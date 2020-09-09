@@ -5,7 +5,7 @@ Page({
      */
 
     data: {
-        
+        share: 3
     },
     purchase: function () {
         wx.navigateTo({
@@ -26,6 +26,7 @@ Page({
                 })
             },
         })
+        wx.setStorageSync('share', this.data.share);
     },
 
     /**
@@ -74,6 +75,6 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function () {
-
+        wx.setStorageSync('share', 4);
     }
 })

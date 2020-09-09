@@ -31,4 +31,4 @@
 <button disabled="{{disables}}" style="background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);"
     type="primary" bindtap="purchase" class="button">检查</button>
 
-<view class="error">答错题数: {{errors}}/3</view>
+<view class="error">答错题数: {{errors}}/{{share}}</view>
